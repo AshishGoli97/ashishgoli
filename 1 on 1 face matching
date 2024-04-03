@@ -1,0 +1,20 @@
+from deepface import DeepFace
+
+# Use the DeepFace.verify function
+obj = DeepFace.verify(
+    img1_path="path_of_image1",
+    img2_path="path_of_image2",
+    model_name='VGG-Face',
+    detector_backend='retinaface',
+    enforce_detection=False
+)
+
+# Adjust the threshold value in the result object
+threshold = 0.65  # Adjust the threshold value as needed
+
+if obj['distance'] < threshold:
+    print(f"The faces are verified with a distance score of {obj['distance']:.4f}.")
+else:
+    print(f"The faces are not verified. The distance score is {obj['distance']:.4f}.")
+
+print(obj)
